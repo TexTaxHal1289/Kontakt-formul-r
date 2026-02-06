@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+
+
+<header>
+    <form id="contactform"></form>
+    
+    <label for="name">Namn</label>
+    <input type="text" id="name" required>
+    
+    <label for="email">E-post</label>
+    <input type="email" id="email" required>
+    
+    <label for="message">Meddelande</label>
+    
+    <textarea id="message" required maxlength="500"></textarea>
+    
+    <label for="subject">Ämne</label>
+    <select id="subject" required>
+        <option value="">Välj ämne</option>
+        <option value="feedback">Feedback</option>
+        <option value="fråga">fråga</option>
+        <option value="other">Annat</option>
+
+    </select>
+    
+    <label>
+        
+        <input type="checkbox" id="terms" required>
+        Jag godkänner villkoren
+        
+    </label>
+    
+    <button type="submit">Skicka</button>
+    
+    <form></form>
+    <div id="errormessages" style="color:red;"></div>
+
+    <input type="text" required minlength="2" maxlength="500" pattern="[A-Za-z\s]+" title="Endast bokstäver och mellanslag tillåtna">
+
+    <input type="email" required>
+    <textarea required maxlength="500"></textarea>
+    
+    
+    <script src="javascript.js"></script>
+    </html>
+</header>
