@@ -1,38 +1,42 @@
 const form = document.getElementById('contactform');
-const errorDiv = document.getElementById('errormessages');
+const Errordiv = document.getElementById('error-message');
 
-form.addEventListener('submit', function(event) {
-    errorDiv.innerHTML = ''; // Clear previous error messages
+form.addEventListener('submit', function(event) {});
+
+    Errordiv.innerHTML = ''; // Clear previous error messages
     let errors = [];
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+    const subject = document.getElementById('subject').value;
+    const terms = document.getElementById('terms').checked;
 
-    const name = form.elements['name'].value.trim();
-    const email = form.elements['email'].value.trim();
-    const message = form.elements['message'].value.trim();
-    const subject = form.elements['subject'].value.trim();
-    const terms = form.elements['terms'].checked;
-
-    //namn validering
-    if (!/^[A-Za-zÅÄÖåäö\s]+$/.test(name)) {
-        errors.push("Namnet får endast innehålla bokstäver och mellanslag.");
+    //namn validation
+    if (!/^[A-Za-zÅÄÖåäö\s]{2,50}$/.test(name)) {
+        errors.push('Namn måste vara mellan 2 och 50 tecken och endast innehålla bokstäver och mellanslag.');
     }
 
-    //email validering
+    //email validation
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        errors.push("Ange en giltig e-postadress.");
+        errors.push('Ange en giltig e-postadress.');
     }
 
-    //meddelande validering
-    if (message.length > 500) {
-        errors.push("Meddelandet får inte vara längre än 500 tecken.");
+    //message validation
+    if (message.length < 10 || message.length > 500) {
+        errors.push('Meddelandet måste vara mellan 10 och 500 tecken.');
     }
 
-    //ämne validering
-    if (subject === "") {
-        errors.push("Välj ett ämne.");
+    //subject validation
+    if (subject.trim() === '') {
+        errors.push('Välj ett ämne.');
     }
 
-    //villkor validering
+    //terms validation
     if (!terms) {
-        errors.push("Du måste godkänna villkoren.");
+        errors.push('Du måste godkänna villkoren.');
     }
 
+    if (errors.length > 0) {
+        Errordiv.innerHTML = '<ul>' + errors.map(error => '<li>' + error + '</li>').join('') + '</ul>';
+        event.preventDefault(); 
+    }
